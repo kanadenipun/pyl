@@ -30,5 +30,5 @@ while(True) :
     t = time.time()
 
     if t > nextInterval:
-        nextInterval = t + 30.0
+        nextInterval = t + 5.0
         result = interval()

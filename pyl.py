@@ -23,7 +23,10 @@ if response.status_code == 200 :
     id = data[0]["_id"]["$oid"]
 
     for line in result:
-        printer.println(line)
+        if(line == '$'):
+            printer.feed(1)
+        else:
+            printer.println(line)
 
     response = requests.delete(url+"/"+id+key)
     #print("Deleted")
