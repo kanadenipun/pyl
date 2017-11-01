@@ -5,7 +5,7 @@ from Adafruit_Thermal import *
 import requests
 import json
 
-printer      = Adafruit_Thermal("/dev/ttyS0", 19200, timeout=5)
+printer = Adafruit_Thermal("/dev/ttyS0", 19200, timeout=5)
 
 url = "https://api.mlab.com/api/1/databases/krpyl/collections/queue"
 key = "?apiKey="
@@ -21,7 +21,8 @@ if response.status_code == 200 :
     data = json.loads(response.content)
     result = data[0]["data"]
     id = data[0]["_id"]["$oid"]
-
+    response = requests.delete(url+"/"+id+key)
+    
     for line in result:
         if(line == '$'):
             printer.feed(1)
